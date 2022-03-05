@@ -3,3 +3,8 @@ ul {
     padding: 0;
     list-style: none;
 }
+
+.filterButton {
+    border: 1px solid gray;
+
+}

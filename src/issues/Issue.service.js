@@ -15,7 +15,6 @@ export const IssueService = {
         status: StatusType.Closed,
     }],
     getIssues() {
-        console.log('this', this);
         return this.issues;
     },
     getIssue(id) {

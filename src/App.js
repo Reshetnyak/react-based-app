@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import {Header} from './layout/Header';
 import {Footer} from './layout/Footer';
 import {Issue} from './issues/Issue';
 import {IssueList} from './issues/Issue-list';
 import {StatusType, StatusTypeTextMap} from './status';
 import {IssueService} from "./issues/Issue.service";
-import {Table} from './components/Table';
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,9 +19,9 @@ import {
 function App() {
     const issues = IssueService.getIssues();
 
-    console.log(issues[0]);
-    IssueService.setStatus(0);
-    console.log(issues[0]);
+    // console.log(issues[0]);
+    // IssueService.setStatus(0);
+    // console.log(issues[0]);
 
     const issue = {
         status: StatusType.Open,
@@ -31,56 +31,23 @@ function App() {
         user friendly way of displaying long titles`
     };
 
-    const rows = [
-        {
-            fields: [
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-            ],
-        },
-        {
-            fields: [
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-            ],
-        },
-        {
-            fields: [
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-            ],
-        },
-        {
-            fields: [
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-                { text: 'hello', link: '/3' },
-            ],
-        },
-    ];
-
   return (
       <Router>
-    <div className="App">
-        <Link to={'/3'}>Go to 3</Link>
-        <Link to={'/'}>Go back to Home</Link>
-
-      <Footer/>
-
-    </div>
+        <Header/>
           <Switch>
               <Route exact path="/">
-                  <Table headers={['one', 'two', 'three']} rows={rows} />
+                  <Redirect to={'/issues?filter=all'} />
               </Route>
-              <Route path="/:id">
+              <Route path="/issues">
+                  <IssueList issues={issues} />
+              </Route>
+              <Route path="/issues/:id">
                   {/* <Wow /> */}
-                   <Issue issue={issue}/>
+                  <Issue issue={issue}/>
                   {/* </Route> */}
-            </Route>
+              </Route>
           </Switch>
+        <Footer/>
       </Router>
   );
 }
