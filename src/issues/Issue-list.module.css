@@ -8,3 +8,12 @@ ul {
     border: 1px solid gray;
 
 }
+
+tr:hover,
+tr:focus-within {
+    background: #f2f3ff;
+}
+
+.active {
+    text-transform: uppercase;
+}

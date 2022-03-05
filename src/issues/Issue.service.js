@@ -18,6 +18,7 @@ export const IssueService = {
         return this.issues;
     },
     getIssue(id) {
+        console.log(this, this.issues.find(issue => issue.id === id));
         return this.issues.find(issue => issue.id === id);
     },
     setStatus(id) {

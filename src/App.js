@@ -38,18 +38,23 @@ function App() {
               <Route exact path="/">
                   <Redirect to={'/issues?filter=all'} />
               </Route>
-              <Route path="/issues">
+              <Route exact path="/issues">
                   <IssueList issues={issues} />
               </Route>
               <Route path="/issues/:id">
-                  {/* <Wow /> */}
-                  <Issue issue={issue}/>
+                   {/*<Wow />*/}
+                  <Issue/>
                   {/* </Route> */}
               </Route>
           </Switch>
         <Footer/>
       </Router>
   );
+}
+
+function Wow() {
+    const {id} = useParams();
+    return <h1>Issue {id}</h1>
 }
 
 export default App;
