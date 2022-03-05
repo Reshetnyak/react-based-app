@@ -4,21 +4,24 @@ import {Footer} from './layout/Footer';
 import {Issue} from './issues/Issue';
 import {IssueList} from './issues/Issue-list';
 import {StatusType, StatusTypeTextMap} from './status';
+import {IssueService} from "./issues/Issue.service";
+import {Table} from './components/Table';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    useParams,
+    useRouteMatch,
+} from 'react-router-dom';
 
 function App() {
-    const issues = [{
-        id: 0,
-        title: 'To think about ellipsis',
-        status: StatusType.Open,
-    },{
-        id: 1,
-        title: 'To think about filtering',
-        status: StatusType.Pending,
-    },{
-        id: 2,
-        title: 'Cry without TypeScript',
-        status: StatusType.Closed,
-    }];
+    const issues = IssueService.getIssues();
+
+    console.log(issues[0]);
+    IssueService.setStatus(0);
+    console.log(issues[0]);
 
     const issue = {
         status: StatusType.Open,
@@ -28,25 +31,57 @@ function App() {
         user friendly way of displaying long titles`
     };
 
+    const rows = [
+        {
+            fields: [
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+            ],
+        },
+        {
+            fields: [
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+            ],
+        },
+        {
+            fields: [
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+            ],
+        },
+        {
+            fields: [
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+                { text: 'hello', link: '/3' },
+            ],
+        },
+    ];
+
   return (
+      <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> Or not
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <IssueList issues={issues}/>
-          <Issue issue={issue}/>
-        </a>
-      </header>
+        <Link to={'/3'}>Go to 3</Link>
+        <Link to={'/'}>Go back to Home</Link>
+
       <Footer/>
+
     </div>
+          <Switch>
+              <Route exact path="/">
+                  <Table headers={['one', 'two', 'three']} rows={rows} />
+              </Route>
+              <Route path="/:id">
+                  {/* <Wow /> */}
+                   <Issue issue={issue}/>
+                  {/* </Route> */}
+            </Route>
+          </Switch>
+      </Router>
   );
 }
 
