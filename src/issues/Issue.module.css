@@ -1,0 +1,49 @@
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.backButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 32px;
+    border: 1px solid var(--pink);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--pink);
+    background-color: white;
+    cursor: pointer;
+    transition: padding-left 0.3s ease, background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.backButton:hover{
+    padding: 5px 10px 5px 25px;
+    color: white;
+    background-color: var(--pink);
+}
+
+.backButton:hover .arrow {
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+}
+
+.backButton:hover .arrow path {
+    fill: white;
+}
+
+.arrow {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    left: 8px;
+    transform: rotate(180deg);
+    transition: opacity 0.2s ease,
+    visibility 0.2s ease,
+    left 0.4s ease;
+}
+
+

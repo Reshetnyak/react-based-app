@@ -6,11 +6,15 @@ tbody > tr {
     cursor: pointer;
 }
 
-tbody > tr:hover {
-    background: lightgray;
-}
-
 .status {
     display: flex;
     align-items: center;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: rgba(0,0,0,0.05);
+}
+
+tbody > tr:hover {
+    background: rgba(0,0,0,0.1);;
 }

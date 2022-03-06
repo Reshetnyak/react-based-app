@@ -1,7 +1,7 @@
 import {StatusTypeTextMap} from "./index";
 import styles from './Status-indicator.module.css';
 
-const IndicatorSize = Object.freeze({
+export const IndicatorSize = Object.freeze({
    Small: 'small',
    Medium: 'medium',
    Big: 'big',

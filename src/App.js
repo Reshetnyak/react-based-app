@@ -34,19 +34,21 @@ function App() {
   return (
       <Router>
           <Header/>
-          <Switch>
-              <Route exact path="/">
-                  <Redirect to={'/issues?filter=all'} />
-              </Route>
-              <Route exact path="/issues">
-                  <IssueList issues={issues} />
-              </Route>
-              <Route path="/issues/:id">
-                   {/*<Wow />*/}
-                  <Issue/>
-                  {/* </Route> */}
-              </Route>
-          </Switch>
+          <main className="main">
+              <Switch>
+                  <Route exact path="/">
+                      <Redirect to={'/issues?filter=all'} />
+                  </Route>
+                  <Route exact path="/issues">
+                      <IssueList issues={issues} />
+                  </Route>
+                  <Route path="/issues/:id">
+                       {/*<Wow />*/}
+                      <Issue/>
+                      {/* </Route> */}
+                  </Route>
+              </Switch>
+          </main>
           <Footer/>
       </Router>
   );

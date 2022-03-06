@@ -48,6 +48,7 @@ export const IssueList = ({issues}) => {
 
     const filterLinks = filters.map((filter, i) =>
         <NavLink
+            title={`Show ${filter.toLowerCase()} issues`}
             to={location => `${location.pathname}?${FILTER_PARAM}=${filter}`}
             className={`${styles.filterButton} ${styles[filter] || 'all'}`}
             activeClassName={styles.active}
@@ -63,9 +64,9 @@ export const IssueList = ({issues}) => {
         <div className="issue-list">
             <h3>Issues</h3>
             <pre>{}</pre>
-            <div className="action-bar">
-                <span className="action-bar__title">Show:</span>
-                {[...filterLinks]}
+            <div className={styles.filters}>
+                <span >Show:</span>
+                <ul className={styles.filters}>{filterLinks.map((link, i) => <li key={i}>{link}</li>)}</ul>
             </div>
             <Table
                 headers={headers}
