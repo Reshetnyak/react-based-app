@@ -1,5 +1,6 @@
 :root {
-    --open: rgb(24, 201, 142);
-    --pending: rgb(254, 190, 49);
-    --closed: rgb(255, 74, 117);
+    --green: rgb(24, 201, 142);
+    --orange: rgb(254, 190, 49);
+    --pink: rgb(255, 74, 117);
+    --gray: #26282e;
 }

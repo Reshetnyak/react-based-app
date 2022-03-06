@@ -5,15 +5,57 @@ ul {
 }
 
 .filterButton {
-    border: 1px solid gray;
-
-}
-
-tr:hover,
-tr:focus-within {
-    background: #f2f3ff;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .active {
-    text-transform: uppercase;
+    color: white;
+}
+
+.all {
+    color: var(--gray);
+    border-color: var(--gray);
+}
+
+.all:hover,
+.all.active {
+    color: white;
+    background-color: var(--gray);
+}
+
+.Open {
+    color: var(--green);
+    border-color: var(--green);
+    /*background-color: green;*/
+}
+
+.Open:hover,
+.Open.active {
+    color: white;
+    background-color: var(--green);
+}
+
+.Pending {
+    color: var(--orange);
+    border-color: var(--orange);
+    /*background-color: orange;*/
+}
+
+.Pending:hover,
+.Pending.active {
+    color: white;
+    background-color: var(--orange);
+}
+
+.Closed {
+    color: var(--pink);
+    border-color: var(--pink);
+    /*background-color: red;*/
+}
+
+.Closed:hover,
+.Closed.active {
+    color: white;
+    background-color: var(--pink);
 }

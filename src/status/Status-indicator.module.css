@@ -1,0 +1,31 @@
+.statusIndicator {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.small {
+    width: 10px;
+    height: 10px;
+}
+
+.medium {
+    width: 15px;
+    height: 15px;
+}
+
+.big {
+    width: 20px;
+    height: 20px;
+}
+
+.Open {
+    background-color: var(--green);
+}
+
+.Pending {
+    background-color: var(--orange);
+}
+
+.Closed {
+    background-color: var(--pink);
+}

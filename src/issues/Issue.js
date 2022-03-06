@@ -1,6 +1,5 @@
 import './Issue.css';
-import { useParams } from 'react-router-dom';
-import {useHistory} from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import {IssueService} from "./Issue.service";
 

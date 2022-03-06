@@ -33,7 +33,7 @@ function App() {
 
   return (
       <Router>
-        <Header/>
+          <Header/>
           <Switch>
               <Route exact path="/">
                   <Redirect to={'/issues?filter=all'} />
@@ -47,7 +47,7 @@ function App() {
                   {/* </Route> */}
               </Route>
           </Switch>
-        <Footer/>
+          <Footer/>
       </Router>
   );
 }

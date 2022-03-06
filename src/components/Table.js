@@ -1,3 +1,5 @@
+import {StatusIndicator} from "../status/Status-indicator";
+import styles from './Table.module.css';
 
 export const Table = ({headers, rows, rowClickHandler}) => (<table>
     <thead>
@@ -5,10 +7,11 @@ export const Table = ({headers, rows, rowClickHandler}) => (<table>
     </thead>
     <tbody>
     {rows.map(({fields, id}, i) => <tr key={i.toString()} onClick={() => rowClickHandler(id)}>{
-        fields.map((field, j) => <td key={j.toString()}>{
-            field
-            //field.link ? <Link to={field.link}>{field.text}</Link> : field.text
-        }</td>)
+        fields.map((field, j) => {
+            const isStatusCell = j === 1;
+            const child = isStatusCell ? [<StatusIndicator status={field}/>,field] : field;
+            return <td key={j.toString()} className={isStatusCell ? styles.status : '' }>{child}</td>
+        })
     }</tr>)}
     </tbody>
 </table>);

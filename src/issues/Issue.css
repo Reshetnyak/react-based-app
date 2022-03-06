@@ -4,14 +4,14 @@
     border-radius: 50%;
 }
 
-.open {
-    background-color: var(--open);
-}
+/*.open {*/
+/*    background-color: var(--open);*/
+/*}*/
 
-.pending {
-    background-color: var(--pending);
-}
+/*.pending {*/
+/*    background-color: var(--pending);*/
+/*}*/
 
-.closed {
-    background-color: var(--closed);
-}
+/*.closed {*/
+/*    background-color: var(--closed);*/
+/*}*/

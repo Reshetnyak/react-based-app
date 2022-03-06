@@ -14,9 +14,10 @@ function useQuery() {
 }
 
 export const IssueList = ({issues}) => {
+    const FILTER_PARAM = 'filter';
     const history = useHistory();
-    // const handleClick = () => history.push('/goodbye');
     const query = useQuery();
+
     const headers = [{
         text: 'Id',
     },{
@@ -25,36 +26,38 @@ export const IssueList = ({issues}) => {
         text: 'Title',
     }];
 
-    const filter = query.get('filter');
-
+    const currentFilter = query.get(FILTER_PARAM);
+    // map issues to table rows
     const rows = issues.reduce((acc, {id, title, status}) => {
-        if (filter === 'all' || filter === status) {
+        if (currentFilter === 'all' || currentFilter === status) {
             return acc.concat({
                 id,
-                fields: [id, title, status]
+                fields: [id, status, title]
             });
         } else {
             return acc;
         }
     }, []);
 
-    const rowClickHandler = id => history.push(`/issues/${id}`);
     const filters = [
         'all',
         StatusType.Open,
         StatusType.Pending,
         StatusType.Closed
     ];
+
     const filterLinks = filters.map((filter, i) =>
         <NavLink
-            to={location => `${location.pathname}?filter=${filter}`}
-            className={styles.filterButton}
+            to={location => `${location.pathname}?${FILTER_PARAM}=${filter}`}
+            className={`${styles.filterButton} ${styles[filter] || 'all'}`}
             activeClassName={styles.active}
             key={i}
-            isActive={() => query.get('filter') === filter}
+            isActive={() => query.get(FILTER_PARAM) === filter}
         >
             {filter}
         </NavLink>);
+
+    const goToIssue = id => history.push(`/issues/${id}`);
 
     return (
         <div className="issue-list">
@@ -63,16 +66,11 @@ export const IssueList = ({issues}) => {
             <div className="action-bar">
                 <span className="action-bar__title">Show:</span>
                 {[...filterLinks]}
-
-                {/*<NavLink to={location => '/issues?filter=all'} className={styles.filterButton} activeClassName="active">All</NavLink>*/}
-                {/*<NavLink to={'/issues?filter=Open'} className={styles.filterButton} activeClassName="active">Open</NavLink>*/}
-                {/*<NavLink to={'/issues?filter=Pending'} className={styles.filterButton} activeClassName="active">Pending</NavLink>*/}
-                {/*<NavLink to={'/issues?filter=Closed'} className={styles.filterButton} activeClassName="active">Closed</NavLink>*/}
             </div>
             <Table
                 headers={headers}
                 rows={rows}
-                rowClickHandler={rowClickHandler}
+                rowClickHandler={goToIssue}
             />
         </div>
     );
