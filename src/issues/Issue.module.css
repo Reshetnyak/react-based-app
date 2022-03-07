@@ -3,20 +3,31 @@
     align-items: center;
 }
 
-.backButton {
-    position: relative;
-    display: flex;
-    align-items: center;
+.header {
+    /*display: flex;*/
+    /*align-items: center;*/
+}
+
+.button {
     border-radius: 32px;
-    border: 1px solid var(--pink);
+    border-width: 1px;
+    border-style: solid;
     padding: 5px 10px;
     font-size: 12px;
     font-weight: bold;
-    color: var(--pink);
     background-color: white;
-    cursor: pointer;
     transition: padding-left 0.3s ease, background-color 0.3s ease;
     text-transform: uppercase;
+    cursor: pointer;
+}
+
+.backButton {
+    composes: button;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-color: var(--pink);
+    color: var(--pink);
 }
 
 .backButton:hover{
@@ -33,6 +44,30 @@
 
 .backButton:hover .arrow path {
     fill: white;
+}
+
+.changeStatusButton {
+    composes: button;
+}
+
+.changeStatusButton.Pending {
+    color: var(--orange);
+    border-color: var(--orange);
+}
+
+.changeStatusButton.Pending:hover {
+    color: white;
+    background-color: var(--orange);
+}
+
+.changeStatusButton.Closed{
+    color: var(--pink);
+    border-color: var(--pink);
+}
+
+.changeStatusButton.Closed:hover {
+    color: white;
+    background-color: var(--pink);
 }
 
 .arrow {

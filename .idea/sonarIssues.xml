@@ -3,7 +3,17 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/README.md">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/docs/index.html">
           <value>
             <set />
           </value>
@@ -84,6 +94,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/issues/issue.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/issues/issues-mock.js">
           <value>
             <set />
           </value>

@@ -1,6 +1,7 @@
 .statusIndicator {
     border-radius: 50%;
     margin-right: 5px;
+    display: inline-block;
 }
 
 .small {

@@ -1,62 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
 import {Header} from './layout/Header';
 import {Footer} from './layout/Footer';
 import {Issue} from './issues/Issue';
 import {IssueList} from './issues/Issue-list';
-import {StatusType, StatusTypeTextMap} from './status';
-import {IssueService} from "./issues/Issue.service";
+import {IssueService, issues as defaultIssues} from "./issues/Issue.service";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
     Redirect,
-    useParams,
-    useRouteMatch,
 } from 'react-router-dom';
-
+import {getNextStatus} from "./status";
+import {useState} from "react";
 function App() {
-    const issues = IssueService.getIssues();
-
-    // console.log(issues[0]);
-    // IssueService.setStatus(0);
-    // console.log(issues[0]);
-
-    const issue = {
-        status: StatusType.Open,
-        statusText: StatusTypeTextMap[StatusType.Open],
-        title: 'To think about ellipsis',
-        description: `In the aside, we'll face with a situation of truncated issue titles. We need to think about
-        user friendly way of displaying long titles`
+    const [issues, setIssues] = useState(defaultIssues);//IssueService.getIssues());
+    const changeStatus = id => {
+        setIssues(previousIssues => previousIssues.map(
+            issue => {
+                if(issue.id === id){
+                    const nextStatus = getNextStatus(issue.status)?.status;
+                    if (nextStatus) {
+                        issue.status = nextStatus;
+                    }
+                }
+                return issue;
+            })
+        );
     };
 
-  return (
-      <Router>
-          <Header/>
-          <main className="main">
-              <Switch>
-                  <Route exact path="/">
-                      <Redirect to={'/issues?filter=all'} />
-                  </Route>
-                  <Route exact path="/issues">
-                      <IssueList issues={issues} />
-                  </Route>
-                  <Route path="/issues/:id">
-                       {/*<Wow />*/}
-                      <Issue/>
-                      {/* </Route> */}
-                  </Route>
-              </Switch>
-          </main>
-          <Footer/>
-      </Router>
-  );
-}
-
-function Wow() {
-    const {id} = useParams();
-    return <h1>Issue {id}</h1>
+    return (
+        <Router>
+            <Header/>
+                <Switch>
+                    <Route exact path="/">
+                        <Redirect to={'/issues?filter=all'} />
+                    </Route>
+                    <Route exact path="/issues">
+                        <IssueList issues={issues} />
+                    </Route>
+                    <Route path="/issues/:id">
+                        <Issue onStatusChange={changeStatus}/>
+                    </Route>
+                </Switch>
+            <Footer/>
+        </Router>
+    );
 }
 
 export default App;

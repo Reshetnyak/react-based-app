@@ -1,20 +1,35 @@
 table {
+    min-width: 70vw;
     border-collapse: collapse;
 }
 
 tbody > tr {
+    transition: background-color 0.2s ease;
     cursor: pointer;
 }
 
-.status {
-    display: flex;
-    align-items: center;
+td {
+    padding: 9px;
 }
+
+td:nth-child(1){
+    width: 15%;
+}
+
+td:nth-child(2){
+    width: 15%;
+}
+
+td:nth-child(3){
+    width: 70%;
+}
+
+.status {}
 
 tbody tr:nth-of-type(even) {
     background-color: rgba(0,0,0,0.05);
 }
 
 tbody > tr:hover {
-    background: rgba(0,0,0,0.1);;
+    background: rgba(0,0,0,0.1);
 }

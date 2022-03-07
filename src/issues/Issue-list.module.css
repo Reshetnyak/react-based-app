@@ -4,9 +4,23 @@ ul {
     list-style: none;
 }
 
-.filters{
+main{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.title{
+    margin-top: 0;
+}
+
+.displayFlex{
     display: flex;
     align-items: center;
+}
+
+.filters{
+    margin-bottom: 20px;
 }
 
 .filterButton {
@@ -19,6 +33,7 @@ ul {
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .active {
@@ -51,7 +66,6 @@ ul {
 .Pending {
     color: var(--orange);
     border-color: var(--orange);
-    /*background-color: orange;*/
 }
 
 .Pending:hover,
@@ -63,7 +77,6 @@ ul {
 .Closed {
     color: var(--pink);
     border-color: var(--pink);
-    /*background-color: red;*/
 }
 
 .Closed:hover,

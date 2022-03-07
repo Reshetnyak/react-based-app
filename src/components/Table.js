@@ -11,7 +11,7 @@ export const Table = ({headers, rows, rowClickHandler}) => (<table className={st
             const isStatusCell = j === 1;
             return <td key={j.toString()} className={isStatusCell ? styles.status : '' }>
                 {isStatusCell ? <StatusIndicator status={field}/> : null}
-                {field}
+                <span>{field}</span>
             </td>
         })
     }</tr>)}

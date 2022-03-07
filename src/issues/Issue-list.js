@@ -61,18 +61,19 @@ export const IssueList = ({issues}) => {
     const goToIssue = id => history.push(`/issues/${id}`);
 
     return (
-        <div className="issue-list">
-            <h3>Issues</h3>
-            <pre>{}</pre>
-            <div className={styles.filters}>
+        <main className="issue-list">
+            <h3 className={styles.title}>Issues</h3>
+            <div className={`${styles.filters} ${styles.displayFlex}`}>
                 <span >Show:</span>
-                <ul className={styles.filters}>{filterLinks.map((link, i) => <li key={i}>{link}</li>)}</ul>
+                <ul className={styles.displayFlex}>
+                    {filterLinks.map((link, i) => <li key={i}>{link}</li>)}
+                </ul>
             </div>
             <Table
                 headers={headers}
                 rows={rows}
                 rowClickHandler={goToIssue}
             />
-        </div>
+        </main>
     );
 };
