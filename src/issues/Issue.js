@@ -1,10 +1,12 @@
 import { useParams, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import {IssueService} from "./Issue.service";
 import {IndicatorSize, StatusIndicator} from "../status/Status-indicator";
 import styles from './Issue.module.css';
 import {getNextStatus} from "../status";
 
-export const Issue = ({onStatusChange, plus}) => {
+export const Issue = ({onStatusChange}) => {
     const history = useHistory();
     const { id } = useParams();
     const issue = IssueService.getIssue(id);
@@ -14,6 +16,7 @@ export const Issue = ({onStatusChange, plus}) => {
         <main>
             <article className="issue">
                 <button
+                    data-test-id="back-to-issues"
                     className={styles.backButton}
                     onClick={() => history.goBack()}
                 >
@@ -37,3 +40,8 @@ export const Issue = ({onStatusChange, plus}) => {
             </article>
         </main>
 )};
+
+Issue.propTypes = {
+    onStatusChange: PropTypes.func.isRequired,
+};
+

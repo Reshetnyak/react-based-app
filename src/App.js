@@ -1,17 +1,20 @@
-import './App.css';
-import {Header} from './layout/Header';
-import {Footer} from './layout/Footer';
-import {Issue} from './issues/Issue';
-import {IssueList} from './issues/Issue-list';
-import {IssueService, issues as defaultIssues} from "./issues/Issue.service";
+import {useState} from "react";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect,
 } from 'react-router-dom';
+
+import './App.css';
+import {Header} from './layout/Header';
+import {Footer} from './layout/Footer';
+import {Issue} from './issues/Issue';
+import {IssueList} from './issues/Issue-list';
+import {issues as defaultIssues} from "./issues/Issue.service";
 import {getNextStatus} from "./status";
-import {useState} from "react";
+import {routes, routeParams} from "./App.routing";
+
 function App() {
     const [issues, setIssues] = useState(defaultIssues);//IssueService.getIssues());
     const changeStatus = id => {
@@ -32,13 +35,13 @@ function App() {
         <Router>
             <Header/>
                 <Switch>
-                    <Route exact path="/">
-                        <Redirect to={'/issues?filter=all'} />
+                    <Route exact path={routes.root}>
+                        <Redirect to={`/${routes.issues}?${routeParams.filter}=all`} />
                     </Route>
-                    <Route exact path="/issues">
+                    <Route exact path={`/${routes.issues}`}>
                         <IssueList issues={issues} />
                     </Route>
-                    <Route path="/issues/:id">
+                    <Route path={`/${routes.issues}/:id`}>
                         <Issue onStatusChange={changeStatus}/>
                     </Route>
                 </Switch>

@@ -1,9 +1,9 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useLocation, useHistory} from 'react-router-dom';
 import styles from './Issue-list.module.css';
 import {Table} from '../components/Table';
-import {useLocation, useHistory} from 'react-router-dom';
 import {StatusType} from "../status";
+import {routes, routeParams} from "../App.routing";
 
 // A custom hook that builds on useLocation to parse
 // the query string for you.
@@ -14,7 +14,6 @@ function useQuery() {
 }
 
 export const IssueList = ({issues}) => {
-    const FILTER_PARAM = 'filter';
     const history = useHistory();
     const query = useQuery();
 
@@ -26,7 +25,7 @@ export const IssueList = ({issues}) => {
         text: 'Title',
     }];
 
-    const currentFilter = query.get(FILTER_PARAM);
+    const currentFilter = query.get(routeParams.filter);
     // map issues to table rows
     const rows = issues.reduce((acc, {id, title, status}) => {
         if (currentFilter === 'all' || currentFilter === status) {
@@ -49,16 +48,16 @@ export const IssueList = ({issues}) => {
     const filterLinks = filters.map((filter, i) =>
         <NavLink
             title={`Show ${filter.toLowerCase()} issues`}
-            to={location => `${location.pathname}?${FILTER_PARAM}=${filter}`}
+            to={location => `${location.pathname}?${routeParams.filter}=${filter}`}
             className={`${styles.filterButton} ${styles[filter] || 'all'}`}
             activeClassName={styles.active}
             key={i}
-            isActive={() => query.get(FILTER_PARAM) === filter}
+            isActive={() => query.get(routeParams.filter) === filter}
         >
             {filter}
         </NavLink>);
 
-    const goToIssue = id => history.push(`/issues/${id}`);
+    const goToIssue = id => history.push(`/${routes.issues}/${id}`);
 
     return (
         <main className="issue-list">
