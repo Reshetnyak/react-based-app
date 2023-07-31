@@ -16,7 +16,7 @@ import { getNextStatus } from "./status";
 import { routes, routeParams } from "./App.routing";
 
 function App() {
-  const [issues, setIssues] = useState(defaultIssues); //IssueService.getIssues());
+  const [issues, setIssues] = useState(defaultIssues);
   const changeStatus = (id) => {
     setIssues((previousIssues) =>
       previousIssues.map((issue) => {
